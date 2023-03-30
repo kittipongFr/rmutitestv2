@@ -1,0 +1,25 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% if val == 1 %}
+    <img src="../static/2.png" alt="Flowers in Chania">
+{% else %}
+<img src="../static/1.png" alt="Flowers in Chania">
+{% endif %}
+    <div style="font-size: 80px">อุณหภูมิ  : {{ data }}</div>
+    <script>
+        setInterval(function() {
+            location.reload();
+        }, 1000); // ให้ refresh ทุกๆ 1 วินาที (1000 milliseconds)
+    </script>
+
+
+
+</body>
+</html>

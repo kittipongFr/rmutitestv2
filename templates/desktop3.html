@@ -1,0 +1,133 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="english">
+  <head>
+    <style>
+      body {
+        background-image: url('{% static 'playground_assets/bg.png' %}');
+        background-size:auto;
+      }
+    </style>
+    <title>exported project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <link  rel="stylesheet" href="{% static 'bootstrap-5.2.3/css/bootstrap.css' %}"/>
+    <script type="text/javascript" src="{% static 'bootstrap-5.2.3/js/bootstrap.js' %}"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+      data-tag="font"
+    />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <link href="{% static 'desktop3.css' %}" rel="stylesheet" />
+<style>
+    .container {
+  transform: scale(calc(100vh / 1080)); /* 1080 คือความสูงของเนื้อหา */
+  transform-origin: top left;
+}
+</style>
+
+  </head>
+  <div >
+    <div>
+
+       <div class="container">
+           <div class="desktop3-group703">
+            <img
+              src="{% static 'playground_assets/logokkc11314-w3g4c-200h.png' %}"
+              alt="logokkc11314"
+              class="desktop3-logokkc1"
+            />
+          </div> 
+           <img
+            src="{% static 'playground_assets/rectangle61048-vxwi-200h.png' %}"
+            alt="Rectangle61048"
+            class="desktop3-rectangle6"
+          />
+          <img
+            src="{% static 'playground_assets/rectangle31045-d0b-400h.png'  %}"
+            alt="Rectangle31045"
+            class="desktop3-rectangle3"
+          />
+          <img
+            src="{% static 'playground_assets/rectangle41046-f2as-400h.png' %}"
+            alt="Rectangle41046"
+            class="desktop3-rectangle4"
+          />
+          <img
+            src="{% static 'playground_assets/line31051-t91h.svg'  %}"
+            alt="Line31051"
+            class="desktop3-line3"
+          />
+          <img
+            src="{% static 'playground_assets/rectangle51047-d9nt-400h.png' %}"
+            alt="Rectangle51047"
+            class="desktop3-rectangle5"
+          />
+          <img
+            src="{% static 'playground_assets/line41052-c4pp.svg' %} "
+            alt="Line41052"
+            class="desktop3-line4"
+          />
+
+
+
+
+
+          <span id="aqi" class="desktop3-text"><span>AQI {{ data }}</span></span>
+          <span class="desktop3-text02"><span>อุณหภูมิ</span></span>
+          <div class="desktop3-group2">
+            <span class="desktop3-text04"><span>ค่า PM</span></span>
+            <span class="desktop3-text06"><span>2.5</span></span>
+          </div>
+          <div class="desktop3-group1">
+            <span class="desktop3-text08"><span>ค่า PM</span></span>
+            <span class="desktop3-text10"><span>10</span></span>
+          </div>
+          <span class="desktop3-text12">
+            <span>ค่า AQI เฉลี่ยย้อนหลัง24ชม.</span>
+          </span>
+          <span class="desktop3-text14">
+            <span>
+              คุณภาพอากาศดีมาก เหมาะสำหรับกิจกรรมกลางแจ้งและการท่องเที่ยว
+            </span>
+          </span>
+          <span class="desktop3-text16"><span>25</span></span>
+          <span class="desktop3-text18"><span>50</span></span>
+          <span class="desktop3-text20"><span>30</span></span>
+          <img
+            src="{% static 'playground_assets/s5644303removebgpreview1044-qmaj-400w.png' %}"
+            alt="S5644303removebgpreview1044"
+            class="desktop3-s5644303removebgpreview"
+          />
+          <img
+            src="{% static 'playground_assets/line21050-2zw.svg' %}"
+            alt="Line21050"
+            class="desktop3-line2"
+          />
+       
+      </div>
+    </div>
+  </div>
+      <script>
+          async function FetchHtml(){
+       let response = await fetch('/show/');
+       return await response.text();
+          }
+          async function Do(){
+              let my_text = await FetchHtml().then(text => {return text});
+              document.getElementById("aqi").innerHTML = "AQI "  + my_text;
+
+          }
+          var x = setInterval(function (){
+              Do();
+          },10000)
+
+
+
+    </script>
+
+  </body>
+</html>

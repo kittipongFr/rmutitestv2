@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Real-time Temperature Chart</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <canvas id="temperature-chart"></canvas>
+  <script>
+    var ctx = document.getElementById('temperature-chart').getContext('2d');
+    var chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: [],
+        datasets: [{
+          label: 'Temperature',
+          data: [],
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgba(255, 99, 132, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+    // Define a function to update the chart with new data
+    function updateChart(temperature) {
+      chart.data.labels.push('');
+      chart.data.datasets[0].data.push(temperature);
+      chart.update();
+    }
+
+    // Use AJAX to periodically update the chart with new data
+    setInterval(function() {
+      $.ajax({
+    url: '{% url "chart" %}',
+    success: function(data) {
+      // Update the chart data with new data from the server
+      for (var i = 0; i < data.temperature_list.length; i++) {
+        updateChart(data.temperature_list[i]);
+      }
+    }
+  });
+    }, 1000);
+  </script>
+</body>
+</html>
