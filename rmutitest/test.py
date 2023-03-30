@@ -26,7 +26,7 @@ query = f'from(bucket:"{bucket}") \
               |> range(start: -1m) \
               |> filter(fn: (r) => r._measurement == "kbide") \
               |> filter(fn: (r) => r._field == "TEMP") \
-              |>last()'
+             '
 
 tables = client.query_api().query(query, org=org)
 

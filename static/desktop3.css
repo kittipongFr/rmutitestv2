@@ -1,4 +1,44 @@
+/* Basic styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
 
+header {
+    /*background-color: #4CAF50;*/
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+main {
+    padding: 2rem;
+}
+
+footer {
+    /*background-color: #f1f1f1;*/
+    text-align: center;
+    padding: 1rem;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Responsive styles for high screen devices */
+@media screen and (min-height: 900px) {
+    header {
+        padding: 2rem;
+    }
+
+    main {
+        padding: 3rem;
+    }
+
+    footer {
+        padding: 2rem;
+    }
+}
 
 
 .desktop3-container {
@@ -122,11 +162,11 @@
   position: absolute;
 }
 .desktop3-text {
-  top: 164px;
-  left: 409px;
+  /*top: 800 px;*/
+  /*left: 409px;*/
   color: rgba(32, 150, 158, 1);
-  width: 456px;
-  height: auto;
+  width: auto;
+  height: 200px;
   position: absolute;
   font-size: 100px;
   align-self: auto;
