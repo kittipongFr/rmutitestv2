@@ -21,7 +21,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index,name="index"),
     path('showaqi/', views.showaqi, name='showaqi'),
+    path('showaqikkc/', views.showaqiKkc, name='showaqikkc'),
     path('chart/', views.chart_view, name='chart'),
-    path('show/', views.show, name='show'),
+    path('showtemp/', views.showtemp, name='showtemp'),
+    path('showpm25/', views.showpm25, name='showpm25'),
+    path('showpm10/', views.showpm10, name='showpm10'),
+    path('showaqiResult/', views.showaqiresult, name='showaqiResult'),
+
 
 ]

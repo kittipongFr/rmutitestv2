@@ -5,7 +5,8 @@
   <head>
     <style>
       body {
-        background-image: url('{% static 'playground_assets/bg.jpg' %}');
+
+           background-image: url('{% static 'playground_assets/bg2.png' %}');
 
         background-size: cover;
 
@@ -61,11 +62,11 @@ img {
   <body>
   <div class="container-fluid">
       <div class="row">
-              <div class="col-sm-6 ">
-          <img  src="{% static "playground_assets/1.png"%}"  style="float: left; margin-top: 5px"  class="img-fluid" alt="Responsive image">
+              <div class="col-sm-7 ">
+          <img  src="{% static "playground_assets/logo2.png"%}"  style="float: left; margin-top: 5px"  class="img-fluid" alt="Responsive image">
       </div>
-      <div class="col-sm-6 ">
-          <img  src="{% static "playground_assets/PM4.png"%}"  style="float: right;" class="img-fluid mx-auto d-block"  alt="Responsive image">
+      <div class="col-sm-5 ">
+
 
       </div>
 
@@ -79,12 +80,12 @@ img {
 
       <div class="col-sm-8 ">
           <div class="row">
-              <div class="col-sm-6 text-end ">
-                <h1 id="aqi" class="text-end"  style="font-size: 100px; margin-top: 30%;float: right; " ></h1>
+              <div class="col-sm-7 text-end ">
+                <h1 id="aqi" class="text-end"  style="font-size: 100px; margin-top: 30%;float: right;text-shadow: 2px 2px 5px #2c2b2b; " ></h1>
      <img  src="{% static "playground_assets/color.png"%}" style="float: right;margin-top: -20px; margin-right: -30px" class="img-fluid mx-auto d-block" alt="Responsive image">
 
                </div>
-              <div class="col-sm-6 ">
+              <div class="col-sm-5 ">
            <img id="aqiImg" src="{% static "playground_assets/d5.png"%}" style="float: left;" class="img-fluid mx-auto d-block" alt="Responsive image">
           </div>
 
@@ -94,8 +95,8 @@ img {
       <div class="col-sm-2 ">
     </div>
       <div class="row" style="margin-top: -50px">
-            <h1 class="text-center">
-              <span class="" style="color: #0bc774;">คุณภาพอากาศดีมาก <i class="fa fa-"></i></span> เหมาะสำหรับกิจกรรมกลางแจ้งและการท่องเที่ยว
+            <h1 class="text-center" style="">
+              <span class="" style="color: #0bc774; text-shadow: 1px 1px 5px #282424;">คุณภาพอากาศดีมาก <i class="fa fa-"></i></span> เหมาะสำหรับกิจกรรมกลางแจ้งและการท่องเที่ยว
             </h1>
                   <h2 class="text-center text-black-50" >very good weather. Suitable for outdoor activities and travel.</h2>
   </div>
@@ -109,7 +110,7 @@ img {
   <div class="container">
     <h1 class="text-center text-black-50 " style="margin-top: 10px;  "  ><b>PM 2.5</b></h1>
  <p style="border-bottom:3px solid #dadfe0"></p>
-      <h1 class="text-center" style="margin-top: 50px;margin-bottom: 50px; font-size: 75px; color: #ED141B ">45</h1>
+      <h1 class="text-center" id="pm25" style="margin-top: 50px;margin-bottom: 50px; font-size: 75px; color: #ED141B ">45</h1>
   </div>
 </div>
         </div>
@@ -118,7 +119,7 @@ img {
   <div class="container">
     <h1 class="text-center text-black-50" style="margin-top: 10px; "><b>PM 10</b></h1>
       <p style="border-bottom:3px solid #dadfe0"></p>
-      <h1 class="text-center" style="margin-top: 50px;margin-bottom: 50px; font-size: 75px; color:#ED8114 ">50</h1>
+      <h1 class="text-center" id="pm10" style="margin-top: 50px;margin-bottom: 50px; font-size: 75px; color:#ED8114 ">50</h1>
   </div>
 </div>
         </div>
@@ -140,8 +141,8 @@ img {
        <div class="col-md-6">
  <div class="card "  style="margin-top: 20px; border:5px solid #f1c927;background-color: #fcefd0">
   <div class="container">
-    <h2 class="text-center " style="margin-top: 10px">ค่า AQI เฉลี่ยย้อนหลัง 24 ชั่วโมง</h2>
-      <h1 class="text-center" style="margin-top: 5px; margin-bottom: 5px">20.52</h1>
+    <h2 class="text-center text-black-50 " style="margin-top: 10px">ค่า AQI เฉลี่ยย้อนหลัง 24 ชั่วโมง</h2>
+      <h1 class="text-center text-danger" style="margin-top: 5px; margin-bottom: 5px">20.52</h1>
   </div>
 </div>
        </div>
@@ -149,7 +150,7 @@ img {
 
 
 
-       <h3 class="text-end"><i class="fa-solid fa-location-dot text-danger"></i> ศูนย์พัฒนาเด็กเล็กเทศบาลน้ำพอง</h3>
+       <h3 class="text-end text-white" style="margin-top: 10px;text-shadow: 2px 2px 5px black;"><i class="fa-solid fa-location-dot text-danger"></i> มหาวิยาลัยเทคโนโลยีราชมงคลอีสาน วิทยาเขตขอนแก่น</h3>
    </div>
 
 
@@ -169,24 +170,38 @@ img {
 
 
       <script>
-          async function FetchHtml(){
-       let response = await fetch('/show/');
+          async function FetchTemp(){
+       let response = await fetch('/showtemp/');
+       return await response.text();
+          }
+          async function FetchPm25(){
+       let response = await fetch('/showpm25/');
+       return await response.text();
+          }
+          async function FetchPm10(){
+       let response = await fetch('/showpm10/');
        return await response.text();
           }
          async function Do(){
-          let my_text = await FetchHtml().then(text => {return text});
+          let my_temp= await FetchTemp().then(text => {return text});
+          let my_pm25 = await FetchPm25().then(text => {return text});
+          let my_pm10 = await FetchPm10().then(text => {return text});
           let aqiElement = document.getElementById("aqi");
+          let pm25Element = document.getElementById("pm25");
+          let pm10Element = document.getElementById("pm10");
           let temp = document.getElementById("temp");
           let aqiImg = document.getElementById("aqiImg");
           let box3 = document.getElementById("box3");
-          aqiElement.innerHTML = `AQI ${my_text}`;
-          temp.innerHTML = `${my_text}`;
-          if (parseFloat(my_text) < 30.00) {
+          pm25Element.innerHTML = `${my_pm25}`;
+          pm10Element.innerHTML = `${my_pm10}`;
+          aqiElement.innerHTML = `AQI ${my_temp}`;
+          temp.innerHTML = `${my_temp}`;
+          if (parseFloat(my_temp) < 31.00) {
               aqiImg.setAttribute("src", "{% static 'playground_assets/d2.png' %}");
               aqiElement.style.color = "#2ac580";
               temp.style.color = "#2ac580";
               box3.style.border = "5px solid #0fb743";
-          }else if (parseFloat(my_text) < 39.00) {
+          }else if (parseFloat(my_temp) < 39.00) {
             aqiElement.style.color = "#F0E206";
             temp.style.color = "#F0E206";
                box3.style.border ="5px solid #eed914";

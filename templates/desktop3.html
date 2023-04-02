@@ -109,7 +109,7 @@ img {
   <div class="container">
     <h1 class="text-center text-black-50 " style="margin-top: 10px;  "  ><b>PM 2.5</b></h1>
  <p style="border-bottom:3px solid #dadfe0"></p>
-      <h1 class="text-center" style="margin-top: 50px;margin-bottom: 50px; font-size: 75px; color: #ED141B ">45</h1>
+      <h1 class="text-center" id="pm25" style="margin-top: 50px;margin-bottom: 50px; font-size: 75px; color: #ED141B ">45</h1>
   </div>
 </div>
         </div>
@@ -118,7 +118,7 @@ img {
   <div class="container">
     <h1 class="text-center text-black-50" style="margin-top: 10px; "><b>PM 10</b></h1>
       <p style="border-bottom:3px solid #dadfe0"></p>
-      <h1 class="text-center" style="margin-top: 50px;margin-bottom: 50px; font-size: 75px; color:#ED8114 ">50</h1>
+      <h1 class="text-center" id="pm10" style="margin-top: 50px;margin-bottom: 50px; font-size: 75px; color:#ED8114 ">50</h1>
   </div>
 </div>
         </div>
@@ -169,32 +169,45 @@ img {
 
 
       <script>
-          async function FetchHtml(){
-       let response = await fetch('/show/');
+          async function FetchTemp(){
+       let response = await fetch('/showtemp/');
+       return await response.text();
+          }
+          async function FetchPm25(){
+       let response = await fetch('/showpm25/');
+       return await response.text();
+          }
+          async function FetchPm10(){
+       let response = await fetch('/showpm10/');
+       return await response.text();
+          }
+          async function FetchAqi(){
+       let response = await fetch('/showaqiResult/');
        return await response.text();
           }
          async function Do(){
-          let my_text = await FetchHtml().then(text => {return text});
+          let my_temp= await FetchTemp().then(text => {return text});
+          let my_pm25 = await FetchPm25().then(text => {return text});
+          let my_pm10 = await FetchPm10().then(text => {return text});
+          let my_aqi = await FetchAqi().then(text => {return text});
           let aqiElement = document.getElementById("aqi");
+          let pm25Element = document.getElementById("pm25");
+          let pm10Element = document.getElementById("pm10");
           let temp = document.getElementById("temp");
           let aqiImg = document.getElementById("aqiImg");
           let box3 = document.getElementById("box3");
-          aqiElement.innerHTML = `AQI ${my_text}`;
-          temp.innerHTML = `${my_text}`;
-          if (parseFloat(my_text) < 30.00) {
+          pm25Element.innerHTML = `${my_pm25}`;
+          pm10Element.innerHTML = `${my_pm10}`;
+          aqiElement.innerHTML = `AQI ${my_aqi}`;
+          temp.innerHTML = `${my_temp}`;
+          if (parseFloat(my_aqi) <= 50) {
               aqiImg.setAttribute("src", "{% static 'playground_assets/d2.png' %}");
               aqiElement.style.color = "#2ac580";
-              temp.style.color = "#2ac580";
-              box3.style.border = "5px solid #0fb743";
-          }else if (parseFloat(my_text) < 39.00) {
+          }else if (parseFloat(my_aqi) <= 120 ) {
             aqiElement.style.color = "#F0E206";
-            temp.style.color = "#F0E206";
-               box3.style.border ="5px solid #eed914";
             aqiImg.setAttribute("src", "{% static 'playground_assets/d3.png' %}");
           } else {
-              temp.style.color = "#F04606";
             aqiElement.style.color = "#F04606";
-             box3.style.border = "5px solid #ED141B";
             aqiImg.setAttribute("src", "{% static 'playground_assets/d5.png' %}");
 
           }
